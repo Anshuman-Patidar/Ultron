@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-jetblack: #090a0f;
+  --color-jetblack-950: #050508;
+  --color-jetblack-900: #0d0f17;
+  --color-jetblack-850: #121520;
+  --color-jetblack-800: #171b28;
+  --color-jetblack-750: #1e2334;
+  --color-jetblack-border: rgba(255, 255, 255, 0.07);
+
+  --color-hotpink: #ff2a85;
+  --color-hotpink-light: #ff60a5;
+  --color-hotpink-dark: #d6146c;
+  --color-hotpink-glow: rgba(255, 42, 133, 0.35);
+
+  --color-chartreuse: #a6ff00;
+  --color-chartreuse-light: #c5ff4d;
+  --color-chartreuse-dark: #84cc00;
+  --color-chartreuse-glow: rgba(166, 255, 0, 0.3);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #090a0f;
+    color: #f1f5f9;
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Gemini Specific Gradient & Shimmer Animations */
+@keyframes geminiTextShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gemini-gradient-text {
+  background: linear-gradient(90deg, #ff2a85 0%, #c084fc 35%, #a6ff00 75%, #ff2a85 100%);
+  background-size: 250% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: geminiTextShimmer 8s ease infinite;
+}
+
+.gemini-pill-shadow {
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 42, 133, 0.15);
+}
+
+.gemini-pill-shadow-focus {
+  box-shadow: 0 12px 50px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(166, 255, 0, 0.25), 0 0 25px rgba(255, 42, 133, 0.2);
+}
+
+/* Animations */
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sparkleSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.animate-message-in {
+  animation: messageIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-sparkle {
+  animation: sparkleSpin 12s linear infinite;
+}
+
+/* Cyber Grid background */
+.bg-gemini-mesh {
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(255, 42, 133, 0.08) 0px, transparent 55%),
+    radial-gradient(at 85% 85%, rgba(166, 255, 0, 0.06) 0px, transparent 55%),
+    radial-gradient(at 50% 50%, rgba(192, 132, 252, 0.04) 0px, transparent 65%);
+}
+
+/* Gemini Card glassmorphism */
+.gemini-card {
+  background: rgba(18, 21, 32, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gemini-card:hover {
+  background: rgba(24, 28, 44, 0.85);
+  border-color: rgba(166, 255, 0, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.7), 0 0 15px rgba(166, 255, 0, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff2a85;
+}
